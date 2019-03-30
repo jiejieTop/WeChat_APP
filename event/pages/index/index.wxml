@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="usermotto" bindtap='tapmessage'>
+    <text class="user-motto">{{motto}}</text>
+  </view>
+
+  <view class="container" id="tapTest" data-hi="WeChat" bindtap="tapName">Click me!</view>
+
+</view>

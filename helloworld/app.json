@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/mqtt/mqtt"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -13,7 +14,7 @@
       "list": [
         {
           "pagePath": "pages/index/index",
-          "text": "首页",
+          "text": "HOME",
           "iconPath":"pages/images/首页.png",
           "selectedIconPath":"pages/images/首页1.png"
         },
@@ -22,6 +23,12 @@
           "text": "日志",
           "iconPath": "pages/images/消息.png",
           "selectedIconPath": "pages/images/消息1.png"
+        },
+        {
+          "pagePath": "pages/mqtt/mqtt",
+          "text": "MQTT",
+          "iconPath": "pages/images/设置.png",
+          "selectedIconPath": "pages/images/设置1.png"
         }
       ]
     }

@@ -1,0 +1,23 @@
+<!--pages/mqtt/mqtt.wxml-->
+
+<view class="server_domain">
+  <input class="input_server" placeholder="{{server_domain}}"/>
+</view>
+
+<button class="btn-area"
+  wx:if="{{!connectflag}}" 
+    type="primary"
+    bindtap="ButtonTapConnect">连接服务器
+</button>
+
+<button class="btn-area"
+  wx:else 
+    type="warn"
+    bindtap="ButtonTapClose">断开连接
+</button>
+
+
+
+<text> \n </text>
+
+

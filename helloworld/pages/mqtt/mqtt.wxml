@@ -4,8 +4,8 @@
   <input class="input_domain" bindinput='domainInput' placeholder="{{server_domain}}"/>
   <input class="unified_setting" bindinput='usernameInput' placeholder="{{connectopt.username}}"/>
   <input class="unified_setting" bindinput='passwordInput' placeholder="{{connectopt.password}}"/>
-  <input class="unified_setting" bindinput='subtopicInput' placeholder="subtopic:{{connectopt.subtopic}}" />
-  <input class="unified_setting" bindinput='pubtopicInput' placeholder="pubtopic:{{connectopt.pubtopic}}"/>
+  <input class="unified_setting" bindinput='subtopicInput' placeholder="subtopic" />
+  <input class="unified_setting" bindinput='pubtopicInput' placeholder="pubtopic"/>
 </view>
 
 <button class="btn-area"

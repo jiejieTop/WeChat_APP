@@ -90,8 +90,8 @@ Page({
       console.log(" 连接失败")
       wx.showToast({
         title: '连接失败',       //弹出提示
-        icon: 'loading',
-        duration: 3000,
+        icon: 'none',
+        duration: 2000,
       })
       this.data.client.end();   //关闭连接
     })

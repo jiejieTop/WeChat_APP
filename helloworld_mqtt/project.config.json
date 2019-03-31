@@ -5,7 +5,7 @@
 	},
 	"setting": {
 		"urlCheck": false,
-		"es6": true,
+		"es6": false,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -14,7 +14,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.6.4",
 	"appid": "wx3da9817857819f5b",
-	"projectname": "helloworld",
+	"projectname": "helloworld_mqtt",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

@@ -20,7 +20,7 @@
         },
         {
           "pagePath": "pages/logs/logs",
-          "text": "Sub",
+          "text": "日志",
           "iconPath": "pages/images/消息.png",
           "selectedIconPath": "pages/images/消息1.png"
         },

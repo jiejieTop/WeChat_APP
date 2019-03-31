@@ -1,7 +1,11 @@
 <!--pages/mqtt/mqtt.wxml-->
 
-<view class="server_domain">
-  <input class="input_server" placeholder="{{server_domain}}"/>
+<view class="main"> 
+  <input class="input_domain" bindinput='domainInput' placeholder="{{server_domain}}"/>
+  <input class="unified_setting" bindinput='usernameInput' placeholder="{{connectopt.username}}"/>
+  <input class="unified_setting" bindinput='passwordInput' placeholder="{{connectopt.password}}"/>
+  <input class="unified_setting" bindinput='subtopicInput' placeholder="subtopic:{{connectopt.subtopic}}" />
+  <input class="unified_setting" bindinput='pubtopicInput' placeholder="pubtopic:{{connectopt.pubtopic}}"/>
 </view>
 
 <button class="btn-area"
@@ -13,9 +17,13 @@
 <button class="btn-area"
   wx:else 
     type="warn"
-    bindtap="ButtonTapClose">断开连接
+    bindtap="ButtonTapClose">服务器已连接
 </button>
 
+<button class="btn-unsubscribe"
+    type="primary"
+    bindtap="ButtonTapUnsubscribe">取消订阅
+</button>
 
 
 <text> \n </text>

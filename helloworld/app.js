@@ -34,6 +34,15 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    subData:null
+  },
+
+  
+  updateSubdata:function(data){
+    this.setData({subData:data});
+    console.log(subData);
   }
+
+
 })

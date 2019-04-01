@@ -1,0 +1,14 @@
+
+<view class="group">
+  <block wx:for="{{iconSize}}">
+    <icon type="success" size="{{item}}" />
+  </block>
+</view>
+
+
+<view class="btn-area">
+  <view class="body-view">
+    <text>{{text}}</text>
+  </view>
+</view>
+

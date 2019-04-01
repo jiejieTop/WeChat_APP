@@ -1,0 +1,5 @@
+<!--logs.wxml-->
+<view class="container log-list">
+  这是文章详情....
+  当前的文章id是:{{log_id}}
+</view>

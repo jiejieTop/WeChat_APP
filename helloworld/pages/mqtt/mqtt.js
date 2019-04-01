@@ -1,7 +1,7 @@
 // pages/mqtt/mqtt.js
 import mqtt from '../../utils/mqtt.js';
 
-//连接的服务器域名，注意格式！！！
+var app = getApp();
 
 Page({
   /**
@@ -95,7 +95,22 @@ Page({
       })
       this.data.client.end();   //关闭连接
     })
+
+    //服务器下发消息的回调
+    this.data.client.on("message", function (topic, payload) {
+      console.log(" 收到 topic:" + topic + " , payload :" + payload)
+      // wx.showModal({
+      //   content: " 收到topic:[" + topic + "], payload :[" + payload + "]",
+      //   showCancel: false,
+      // });
+      app.globalData.subData = payload;
+      // this.setData(: payload);
+    })
+
+
   },
+  
+
 
 
   ButtonTapClose: function(event) {

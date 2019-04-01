@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/mqtt/mqtt"
+    "pages/mqtt/mqtt",
+    "pages/sub/sub"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -19,7 +20,7 @@
         "selectedIconPath":"pages/images/首页1.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/sub/sub",
         "text": "Sub",
         "iconPath": "pages/images/消息.png",
         "selectedIconPath": "pages/images/消息1.png"

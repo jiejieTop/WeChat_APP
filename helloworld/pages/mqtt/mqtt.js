@@ -103,7 +103,9 @@ Page({
       //   content: " 收到topic:[" + topic + "], payload :[" + payload + "]",
       //   showCancel: false,
       // });
-      app.globalData.subData = payload;
+      app.globalData.subData = payload.toString();
+
+      console.log(app.globalData.subData);
       // this.setData(: payload);
     })
 

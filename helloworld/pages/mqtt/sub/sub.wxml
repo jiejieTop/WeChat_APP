@@ -1,0 +1,8 @@
+
+
+<view class="btn-area">
+  <view class="body-view">
+    <text>{{text}}</text>
+  </view>
+</view>
+

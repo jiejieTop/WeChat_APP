@@ -97,22 +97,20 @@ Page({
       this.data.client.end();   //关闭连接
     })
 
-    //服务器下发消息的回调
-    this.data.client.on("message", function (topic, payload) {
-      console.log(" 收到 topic:" + topic + " , payload :" + payload)
-      // wx.showModal({
-      //   content: " 收到topic:[" + topic + "], payload :[" + payload + "]",
-      //   showCancel: false,
-      // });
-      app.globalData.subData = payload.toString();
+    // //服务器下发消息的回调
+    // this.data.client.on("message", function (topic, payload) {
+    //   console.log(" 收到 topic:" + topic + " , payload :" + payload)
+    //   // wx.showModal({
+    //   //   content: " 收到topic:[" + topic + "], payload :[" + payload + "]",
+    //   //   showCancel: false,
+    //   // });
+    //   app.globalData.subData = payload.toString();
 
-      console.log(app.globalData.subData);
+    //   console.log(app.globalData.subData);
 
-      // app.updateSubdata1();
-
-      // this.setData({ sub.data.text:0 });
-      // this.setData(: payload);
-    })
+    //   app.updateSubdata1();
+    //   // this.setData(: payload);
+    // })
 
 
   },

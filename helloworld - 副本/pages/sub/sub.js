@@ -1,4 +1,4 @@
-import mymqtt from '../mqtt/mqtt.js';
+// import mymqtt from '../mqtt/mqtt.js';
 
 const initData = 'this is first line\nthis is second line'
 
@@ -22,6 +22,10 @@ Page({
     text: null
 
   },
+
+  updateSubData:function(){
+    console.log("---sub updateSubData--- ");
+},
 
   /**
    * 生命周期函数--监听页面加载

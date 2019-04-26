@@ -14,9 +14,14 @@ Page({
     text: null
   },
 
+  
+
   updateSubData:function(){
     console.log("---sub updateSubData--- ");
 },
+
+
+
 
 
   /**
@@ -36,6 +41,16 @@ Page({
     console.log("---sub onReady--- ");
   },
 
+  updateSubdata: function () {
+    // this.setData({subData:data});
+    // console.log(subData);
+    this.setData({ text: app.globalData.subData })
+
+    
+  },
+
+
+
   /**
    * 生命周期函数--监听页面显示
    */
@@ -46,7 +61,38 @@ Page({
     console.log("subData:" + app.globalData.subData);
     console.log("text:" + this.data.text);
 
+    if (app.globalData.connectflag == true)
+    {
+      //服务器下发消息的回调
+      app.globalData.client.on('message', (topic, payload) => {
+        console.log(" 收到 topic:" + topic + " , payload :" + payload)
+
+        app.globalData.subData = payload.toString();
+        console.log(app.globalData.subData);
+        
+        this.setData({ text: app.globalData.subData });//更新页面
+      })
+
+    }else{
+      wx.showToast({
+        title: '请先订阅主题',
+        icon: 'none',
+        duration: 2000
+      })
+   }
+
+    this.setData({ text: app.globalData.subData });
+    
+    this.setData({ text: app.globalData.subData });
+    console.log("subData:" + app.globalData.subData);
+    console.log("text:" + this.data.text);
+
+    // this.updateSubdata();
   },
+
+
+
+
 
   /**
    * 生命周期函数--监听页面隐藏

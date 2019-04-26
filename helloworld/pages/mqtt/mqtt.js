@@ -12,10 +12,10 @@ Page({
     // 连接的域名：注意格式，不要带端口号
     server_domain: "www.jiejie01.top",
     //连接client
-    client: null,
-    subtopic: 'mqtt_topic',
-    pubtopic: 'mqtt_topic',
-    connectflag: false,
+    // client: null,
+    // subtopic: 'mqtt_topic',
+    // pubtopic: 'mqtt_topic',
+    // connectflag: false,
     //连接配置
     connectopt: {
       protocolVersion: 4,         //MQTT连接协议版本 3 为3.1 / 4 为3.1.1
@@ -49,11 +49,13 @@ Page({
 
 
   subtopicInput: function (e) {
-    this.setData({ subtopic: e.detail.value })   //输入并更新subtopic数据
+    app.globalData.subtopic = e.detail.value
+    // this.setData({ subtopic: e.detail.value })   //输入并更新subtopic数据
   }, 
   
   pubtopicInput: function (e) {
-    this.setData({ pubtopic: e.detail.value })   //输入并更新pubtopic数据
+    app.globalData.pubtopic = e.detail.value
+    // this.setData({ pubtopic: e.detail.value })   //输入并更新pubtopic数据
   },
 
 
@@ -64,7 +66,7 @@ Page({
     var host_name = 'wxs://' + this.data.server_domain + '/mqtt'; //更新域名连接
 
     //开始连接
-    this.data.client = mqtt.connect(host_name, this.data.connectopt);
+    app.globalData.client = mqtt.connect(host_name, this.data.connectopt);
 
     wx.showToast({
       title: '正在连接',
@@ -72,47 +74,48 @@ Page({
       duration: 50000,
     })
 
-    this.data.client.on('connect', (err) => {
+    app.globalData.client.on('connect', (err) => {
       console.log('成功连接服务器')
       this.setData({ connectflag: true });    //更新页面
-      this.data.client.subscribe(this.data.subtopic, function (err, granted) {  //订阅主题
+      app.globalData.client.subscribe(app.globalData.subtopic, function (err, granted) {  //订阅主题
         if (!err) {
           wx.showToast({
             title: '连接成功',       //弹出提示 连接并订阅成功
             icon: 'success',
             duration: 1000,
           })
+          app.globalData.connectflag = true;
         }
       }) 
     })
 
     //服务器连接异常的回调
-    this.data.client.on("offline", function (err) {
+    app.globalData.client.on("offline", function (err) {
       console.log(" 连接失败")
       wx.showToast({
         title: '连接失败',       //弹出提示
         icon: 'none',
         duration: 2000,
       })
-      this.data.client.end();   //关闭连接
+      app.globalData.client.end();   //关闭连接
     })
 
-    //服务器下发消息的回调
-    this.data.client.on("message", function (topic, payload) {
-      console.log(" 收到 topic:" + topic + " , payload :" + payload)
-      // wx.showModal({
-      //   content: " 收到topic:[" + topic + "], payload :[" + payload + "]",
-      //   showCancel: false,
-      // });
-      app.globalData.subData = payload.toString();
+    // //服务器下发消息的回调
+    // app.globalData.client.on("message", function (topic, payload) {
+    //   console.log(" 收到 topic:" + topic + " , payload :" + payload)
+    //   // wx.showModal({
+    //   //   content: " 收到topic:[" + topic + "], payload :[" + payload + "]",
+    //   //   showCancel: false,
+    //   // });
+    //   app.globalData.subData = payload.toString();
 
-      console.log(app.globalData.subData);
+    //   console.log(app.globalData.subData);
 
-      // app.updateSubdata1();
+    //   // app.updateSubdata1();
 
-      // this.setData({ sub.data.text:0 });
-      // this.setData(: payload);
-    })
+    //   // this.setData({ sub.data.text:0 });
+    //   // this.setData(: payload);
+    // })
 
 
   },
@@ -126,21 +129,23 @@ Page({
     // this.setData({ connectflag: false });
     // this.data.client.end();
 
-    this.data.client.end('close', function(err){}) 
+    app.globalData.client.end('close', function(err){}) 
     console.log('断开服务器');
     this.setData({ connectflag: false });
     wx.showToast({
       title: '断开成功'       //弹出提示 连接并订阅成功
     })
+    app.globalData.connectflag = false;
   },
   ButtonTapUnsubscribe:function(event){
-    if (this.data.client && this.data.client.connected) {
-      this.data.client.unsubscribe(this.data.subtopic);
+    if (app.globalData.client && app.globalData.client.connected && (app.globalData.connectflag == true)) {
+      app.globalData.client.unsubscribe(app.globalData.subtopic);
       wx.showToast({
         title: '取消成功',
         icon: 'success',
         duration: 2000
       })
+      app.globalData.connectflag = false;
     }else {
       wx.showToast({
         title: '请先连接服务器',

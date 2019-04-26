@@ -36,7 +36,11 @@ App({
   globalData: {
     userInfo: null,
     subData:null,
-    text1:null
+    text1:null,
+    client:null,
+    subtopic: 'mqtt_topic',
+    pubtopic: 'mqtt_topic',
+    connectflag: false,
   },
 
   

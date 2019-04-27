@@ -37,7 +37,7 @@
 }
 
 .btn-unsubscribe{
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;    /*设置显示样式**/
   align-items: center;    /**子view垂直居中*/
   vertical-align: center; /**垂直居中*/

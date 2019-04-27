@@ -42,6 +42,7 @@ App({
     pubtopic: 'mqtt_topic',
     subtopic1:[],
     connectflag: false,
+    subtopicflag: false
   },
 
   

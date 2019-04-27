@@ -32,7 +32,6 @@ Page({
 
   insert: function (e) {
     var cb = this.data.input;
-    console.log(e)
     cb.push(this.data.input.length);
     this.setData({
       input: cb
@@ -93,7 +92,7 @@ Page({
     app.globalData.client.on('connect', (err) => {
       console.log('成功连接服务器')
       this.setData({ connectflag: true });    //更新页面
-      app.globalData.client.subscribe(app.globalData.subtopic, function (err, granted) {  //订阅主题
+      app.globalData.client.subscribe(app.globalData.subtopic, (err, granted) => {  //订阅主题
         if (!err) {
           wx.showToast({
             title: '连接成功',       //弹出提示 连接并订阅成功
@@ -101,6 +100,8 @@ Page({
             duration: 1000,
           })
           app.globalData.connectflag = true;
+          app.globalData.subtopicflag = true;
+          this.setData({ subtopicflag: true });    //更新页面
         }
       }) 
     })
@@ -116,24 +117,6 @@ Page({
       app.globalData.client.end();   //关闭连接
     })
 
-    // //服务器下发消息的回调
-    // app.globalData.client.on("message", function (topic, payload) {
-    //   console.log(" 收到 topic:" + topic + " , payload :" + payload)
-    //   // wx.showModal({
-    //   //   content: " 收到topic:[" + topic + "], payload :[" + payload + "]",
-    //   //   showCancel: false,
-    //   // });
-    //   app.globalData.subData = payload.toString();
-
-    //   console.log(app.globalData.subData);
-
-    //   // app.updateSubdata1();
-
-    //   // this.setData({ sub.data.text:0 });
-    //   // this.setData(: payload);
-    // })
-
-
   },
   
 
@@ -142,27 +125,42 @@ Page({
   ButtonTapClose: function(event) {
     console.log("断开连接:");
 
-    // this.setData({ connectflag: false });
-    // this.data.client.end();
-
     app.globalData.client.end('close', function(err){}) 
     console.log('断开服务器');
     this.setData({ connectflag: false });
+    this.setData({ subtopicflag: false });
     wx.showToast({
       title: '断开成功'       //弹出提示 连接并订阅成功
     })
     app.globalData.connectflag = false;
+    app.globalData.subtopicflag = false;
   },
   ButtonTapUnsubscribe:function(event){
     if (app.globalData.client && app.globalData.client.connected && (app.globalData.connectflag == true)) {
-      app.globalData.client.unsubscribe(app.globalData.subtopic);
-      wx.showToast({
-        title: '取消成功',
-        icon: 'success',
-        duration: 2000
-      })
-      app.globalData.connectflag = false;
-    }else {
+      if (app.globalData.client && app.globalData.client.connected && (app.globalData.subtopicflag == true)) {
+        app.globalData.client.unsubscribe(app.globalData.subtopic);   //已经连接并且订阅
+        wx.showToast({
+          title: '取消成功',
+          icon: 'success',
+          duration: 2000
+        })
+        app.globalData.subtopicflag = false;
+        this.setData({ subtopicflag: false });
+      }else{    //已经连接但是未订阅
+        app.globalData.client.subscribe(app.globalData.subtopic, (err, granted) => {  //订阅主题
+          if (!err) {
+            wx.showToast({
+              title: '订阅成功',       //弹出提示 订阅成功
+              icon: 'success',
+              duration: 1000,
+            })
+            app.globalData.connectflag = true;
+            app.globalData.subtopicflag = true;
+            this.setData({ subtopicflag: true });    //更新页面
+          }
+        })
+      }
+    }else { //未连接
       wx.showToast({
         title: '请先连接服务器',
         icon: 'none',

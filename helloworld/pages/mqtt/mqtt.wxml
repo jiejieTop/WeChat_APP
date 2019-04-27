@@ -20,6 +20,18 @@
     bindtap="ButtonTapClose">服务器已连接
 </button>
 
+<button class="btn-unsubscribe"
+  wx:if="{{!subtopicflag}}" 
+    type="primary"
+    bindtap="ButtonTapUnsubscribe">订阅主题
+</button>
+
+<button class="btn-unsubscribe"
+  wx:else 
+    type="warn"
+    bindtap="ButtonTapUnsubscribe">取消订阅主题
+</button>
+
 <view class="main" wx:for="{{input}}">
    <input class="unified_setting" 
    bindinput='subtopicInput1' 
@@ -29,13 +41,6 @@
 
 <button class="btn-area"
   bindtap="insert">添加主题</button>
-
-<button class="btn-unsubscribe"
-    type="primary"
-    bindtap="ButtonTapUnsubscribe">取消订阅
-</button>
-
-
 
 <text> \n </text>
 

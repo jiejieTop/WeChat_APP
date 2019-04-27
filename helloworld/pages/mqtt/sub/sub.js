@@ -5,17 +5,20 @@ import mqtt from '../../../utils/mqtt.js';
 
 var app = getApp();
 
+const order = ['red', 'yellow', 'blue', 'green', 'red']
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    text: null,
-    logs:[]
+    topic:null,
+    payload: null,
+    logs:[],
+    toView: 'red',
+    scrollTop: 100
   },
-
-  
 
   updateSubData:function(){
     console.log("---sub updateSubData--- ");
@@ -30,7 +33,7 @@ Page({
    */
   onLoad: function (options) {
     console.log("---sub onLoad--- ");
-    this.data.text = app.globalData.subData;
+    this.data.payload = app.globalData.subData;
   },
 
   /**
@@ -55,8 +58,8 @@ Page({
         console.log(" 收到 topic:" + topic + " , payload :" + payload)
         app.globalData.subData = payload.toString();
         console.log(app.globalData.subData);
-        
-        this.setData({ text: topic + " : " + app.globalData.subData });//更新页面
+        this.setData({ topic: topic});//更新页面
+        this.setData({ payload: app.globalData.subData });//更新页面
       })
 
     }else{

@@ -1,21 +1,16 @@
 
-  <view class="body-view">
-    <text>{{text}}</text>
+<view class="section">
+  <view class="flex-wrp">
+    <text class="flex-item bc_red">topic : {{topic}}</text>
   </view>
 
-
-  <view>
-  <scroll-view
-    scroll-y
-    style="height: 200px;"
-    bindscrolltoupper="upper"
-    bindscrolltolower="lower"
-    bindscroll="scroll"
-    scroll-into-view="red"
-    scroll-top="{{100}}"
-  >
-  </scroll-view>
+  <view class="flex-wrp">
+    <text class="flex-item bc_org">data : \n {{payload}}<br/> 
+    </text>
+  </view>
 </view>
+
+
 
 
 

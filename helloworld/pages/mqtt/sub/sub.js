@@ -11,7 +11,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    text: null
+    text: null,
+    logs:[]
   },
 
   
@@ -30,8 +31,6 @@ Page({
   onLoad: function (options) {
     console.log("---sub onLoad--- ");
     this.data.text = app.globalData.subData;
-    // text += app.globalData.subData
-    // this.setData({ text: app.globalData.subData});
   },
 
   /**
@@ -41,14 +40,6 @@ Page({
     console.log("---sub onReady--- ");
   },
 
-  updateSubdata: function () {
-    // this.setData({subData:data});
-    // console.log(subData);
-    this.setData({ text: app.globalData.subData })
-
-    
-  },
-
 
 
   /**
@@ -56,21 +47,16 @@ Page({
    */
   onShow: function () {
     console.log("---sub onShow--- ");
-    this.data.text = app.globalData.subData;
-    this.setData({ text: app.globalData.subData});
-    console.log("subData:" + app.globalData.subData);
-    console.log("text:" + this.data.text);
 
     if (app.globalData.connectflag == true)
     {
       //服务器下发消息的回调
       app.globalData.client.on('message', (topic, payload) => {
         console.log(" 收到 topic:" + topic + " , payload :" + payload)
-
         app.globalData.subData = payload.toString();
         console.log(app.globalData.subData);
         
-        this.setData({ text: app.globalData.subData });//更新页面
+        this.setData({ text: topic + " : " + app.globalData.subData });//更新页面
       })
 
     }else{
@@ -80,14 +66,6 @@ Page({
         duration: 2000
       })
    }
-
-    this.setData({ text: app.globalData.subData });
-    
-    this.setData({ text: app.globalData.subData });
-    console.log("subData:" + app.globalData.subData);
-    console.log("text:" + this.data.text);
-
-    // this.updateSubdata();
   },
 
 

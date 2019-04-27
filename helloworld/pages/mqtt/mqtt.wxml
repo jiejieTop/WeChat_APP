@@ -1,11 +1,11 @@
 <!--pages/mqtt/mqtt.wxml-->
 
 <view class="main"> 
-  <input class="input_domain" bindinput='domainInput' placeholder="{{server_domain}}"/>
-  <input class="unified_setting" bindinput='usernameInput' placeholder="{{connectopt.username}}"/>
-  <input class="unified_setting" bindinput='passwordInput' placeholder="{{connectopt.password}}"/>
-  <input class="unified_setting" bindinput='subtopicInput' placeholder="subtopic" />
-  <input class="unified_setting" bindinput='pubtopicInput' placeholder="pubtopic"/>
+  <input class="input_domain" bindinput='domainInput' placeholder="服务器地址：{{server_domain}}"/>
+  <input class="unified_setting" bindinput='usernameInput' placeholder="用户名：{{connectopt.username}}"/>
+  <input  password="{{true}}" class="unified_setting" bindinput='passwordInput' placeholder="密码：{{connectopt.password}}"/>
+  <input class="unified_setting" bindinput='subtopicInput' placeholder="订阅主题：subtopic" />
+  <input class="unified_setting" bindinput='pubtopicInput' placeholder="发布主题：pubtopic"/>
 </view>
 
 <button class="btn-area"
@@ -20,10 +20,21 @@
     bindtap="ButtonTapClose">服务器已连接
 </button>
 
+<view class="main" wx:for="{{input}}">
+   <input class="unified_setting" 
+   bindinput='subtopicInput1' 
+   id="{{index}}"
+   placeholder="订阅主题{{index + 1}}：subtopic" />
+</view>
+
+<button class="btn-area"
+  bindtap="insert">添加主题</button>
+
 <button class="btn-unsubscribe"
     type="primary"
     bindtap="ButtonTapUnsubscribe">取消订阅
 </button>
+
 
 
 <text> \n </text>

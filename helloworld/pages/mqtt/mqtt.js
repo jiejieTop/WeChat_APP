@@ -11,6 +11,7 @@ Page({
   data: {
     // 连接的域名：注意格式，不要带端口号
     server_domain: "www.jiejie01.top",
+    input: [],
     //连接client
     // client: null,
     // subtopic: 'mqtt_topic',
@@ -27,6 +28,15 @@ Page({
       connectTimeout: 30 * 1000,  //1000毫秒，两次重新连接之间的间隔
       resubscribe: true           //如果连接断开并重新连接，则会再次自动订阅已订阅的主题（默认true）
     }
+  },
+
+  insert: function (e) {
+    var cb = this.data.input;
+    console.log(e)
+    cb.push(this.data.input.length);
+    this.setData({
+      input: cb
+    });
   },
 
   domainInput: function(e){
@@ -57,6 +67,12 @@ Page({
     app.globalData.pubtopic = e.detail.value
     // this.setData({ pubtopic: e.detail.value })   //输入并更新pubtopic数据
   },
+
+  subtopicInput1: function(e) {
+    app.globalData.subtopic1 = e.detail.value
+    console.log(app.globalData.subtopic1);
+    // this.setData({ subtopic: e.detail.value })   //输入并更新subtopic数据
+  }, 
 
 
   ButtonTapConnect:function(event) {

@@ -34,25 +34,6 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
-    subData:null,
-    text1:null,
-    client:null,
-    subtopic: 'mqtt_topic',
-    pubtopic: 'mqtt_topic',
-    subtopic1:[],
-    connectflag: false,
-  },
-
-  
-  updateSubdata1:function(){
-    // this.setData({subData:data});
-    // console.log(subData);
-    this.sub.updateSubData();
-
+    userInfo: null
   }
-
-
-
-
 })

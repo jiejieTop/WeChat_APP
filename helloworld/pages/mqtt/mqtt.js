@@ -12,11 +12,8 @@ Page({
     // 连接的域名：注意格式，不要带端口号
     server_domain: "www.jiejie01.top",
     input: [],
-    //连接client
-    // client: null,
-    // subtopic: 'mqtt_topic',
-    // pubtopic: 'mqtt_topic',
-    // connectflag: false,
+    addinputflag: false,
+    subtopicinputflag: false,
     //连接配置
     connectopt: {
       protocolVersion: 4,         //MQTT连接协议版本 3 为3.1 / 4 为3.1.1
@@ -25,17 +22,9 @@ Page({
       username: 'jiejie',         //用户名
       password: '12345',          //密码
       reconnectPeriod: 1000,      //1000毫秒，两次重新连接之间的间隔
-      connectTimeout: 30 * 1000,  //1000毫秒，两次重新连接之间的间隔
+      connectTimeout: 30 * 1000,  //30 * 1000毫秒，两次重新连接之间的间隔
       resubscribe: true           //如果连接断开并重新连接，则会再次自动订阅已订阅的主题（默认true）
     }
-  },
-
-  insert: function (e) {
-    var cb = this.data.input;
-    cb.push(this.data.input.length);
-    this.setData({
-      input: cb
-    });
   },
 
   domainInput: function(e){
@@ -67,12 +56,68 @@ Page({
     // this.setData({ pubtopic: e.detail.value })   //输入并更新pubtopic数据
   },
 
-  subtopicInput1: function(e) {
-    app.globalData.subtopic1 = e.detail.value
-    console.log(app.globalData.subtopic1);
+  insert: function (e) {
+    var cb = this.data.input;
+    if (this.data.addinputflag == false){
+      this.setData({ addinputflag: true });
+      cb.push(this.data.input.length);
+      this.setData({
+        input: cb
+      });
+    }
+
+    else{
+      wx.showToast({
+        title: '请先进行订阅',       //弹出提示
+        icon: 'none',
+        duration: 2000,
+      })
+    }
+  },
+  
+  delSubtopicInput: function () { //删除主题
+    var cb = this.data.input;
+    // console.log(cb);
+    cb.pop(this.data.input.length);
+    this.setData({
+      input: cb
+    });
+    this.setData({ addinputflag: false });      //清除标记
+    this.setData({ subtopicinputflag: false });
+  },
+
+  subtopicInputx: function(e) {
+    app.globalData.subtopicx = e.detail.value;
+    this.setData({ subtopicinputflag: true });
+    console.log(app.globalData.subtopicx);
     // this.setData({ subtopic: e.detail.value })   //输入并更新subtopic数据
   }, 
 
+  subscribeInputx: function () {    //订阅输入的主题
+    if(this.data.addinputflag && this.data.subtopicinputflag){
+      
+      if (app.globalData.client && app.globalData.client.connected && (app.globalData.connectflag == true)) {
+        console.log("订阅主题");
+        app.globalData.client.subscribe(app.globalData.subtopicx, (err, granted) => {  //订阅主题
+          if (!err) {
+            wx.showToast({
+              title: '订阅成功',       //弹出提示 订阅成功
+              icon: 'success',
+              duration: 1000,
+            })
+            this.setData({ addinputflag: false });      //清除标记
+            this.setData({ subtopicinputflag: false });
+          }
+        })
+      }else{
+        wx.showToast({
+          title: '请先连接服务器',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    }
+  }, 
 
   ButtonTapConnect:function(event) {
     console.log("连接服务器:");
@@ -119,9 +164,6 @@ Page({
 
   },
   
-
-
-
   ButtonTapClose: function(event) {
     console.log("断开连接:");
 
@@ -135,9 +177,10 @@ Page({
     app.globalData.connectflag = false;
     app.globalData.subtopicflag = false;
   },
+
   ButtonTapUnsubscribe:function(event){
     if (app.globalData.client && app.globalData.client.connected && (app.globalData.connectflag == true)) {
-      if (app.globalData.client && app.globalData.client.connected && (app.globalData.subtopicflag == true)) {
+      if (app.globalData.subtopicflag == true) {
         app.globalData.client.unsubscribe(app.globalData.subtopic);   //已经连接并且订阅
         wx.showToast({
           title: '取消成功',

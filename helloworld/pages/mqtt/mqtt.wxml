@@ -34,13 +34,28 @@
 
 <view class="main" wx:for="{{input}}">
    <input class="unified_setting" 
-   bindinput='subtopicInput1' 
+   bindinput='subtopicInputx' 
    id="{{index}}"
-   placeholder="订阅主题{{index + 1}}：subtopic" />
+   placeholder="请输入订阅的主题{{index + 1}}：subtopic" />
 </view>
 
 <button class="btn-area"
-  bindtap="insert">添加主题</button>
+  wx:if="{{!addinputflag}}" 
+  type="primary"
+  bindtap="insert">添加主题
+</button>
+
+<button class="btn-area"
+  wx:elif = "{{addinputflag && subtopicinputflag}}" 
+  type="primary"
+  bindtap="subscribeInputx">订阅主题
+</button>
+
+<button class="btn-area"
+  wx:else 
+  type="warn"
+  bindtap="delSubtopicInput">删除主题
+</button>
 
 <text> \n </text>
 

@@ -5,7 +5,6 @@ import mqtt from '../../../utils/mqtt.js';
 
 var app = getApp();
 
-const order = ['red', 'yellow', 'blue', 'green', 'red']
 
 Page({
 
@@ -23,10 +22,6 @@ Page({
   updateSubData:function(){
     console.log("---sub updateSubData--- ");
 },
-
-
-
-
 
   /**
    * 生命周期函数--监听页面加载

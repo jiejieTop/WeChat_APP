@@ -1,0 +1,62 @@
+<!--pages/mqtt/mqtt.wxml-->
+
+<view class="main"> 
+  <input class="input_domain" bindinput='domainInput' placeholder="服务器地址：{{server_domain}}"/>
+  <input class="unified_setting" bindinput='usernameInput' placeholder="用户名：{{connectopt.username}}"/>
+  <input  password="{{true}}" class="unified_setting" bindinput='passwordInput' placeholder="密码：{{connectopt.password}}"/>
+  <input class="unified_setting" bindinput='subtopicInput' placeholder="订阅主题：subtopic" />
+  <input class="unified_setting" bindinput='pubtopicInput' placeholder="发布主题：pubtopic"/>
+</view>
+
+<button class="btn-area"
+  wx:if="{{!connectflag}}" 
+    type="primary"
+    bindtap="ButtonTapConnect">连接服务器
+</button>
+
+<button class="btn-area"
+  wx:else 
+    type="warn"
+    bindtap="ButtonTapClose">服务器已连接
+</button>
+
+<button class="btn-unsubscribe"
+  wx:if="{{!subtopicflag}}" 
+    type="primary"
+    bindtap="ButtonTapUnsubscribe">订阅主题
+</button>
+
+<button class="btn-unsubscribe"
+  wx:else 
+    type="warn"
+    bindtap="ButtonTapUnsubscribe">取消订阅主题
+</button>
+
+<view class="main" wx:for="{{input}}">
+   <input class="unified_setting" 
+   bindinput='subtopicInputx' 
+   id="{{index}}"
+   placeholder="请输入订阅的主题{{index + 1}}：subtopic" />
+</view>
+
+<button class="btn-area"
+  wx:if="{{!addinputflag}}" 
+  type="primary"
+  bindtap="insert">添加主题
+</button>
+
+<button class="btn-area"
+  wx:elif = "{{addinputflag && subtopicinputflag}}" 
+  type="primary"
+  bindtap="subscribeInputx">订阅主题
+</button>
+
+<button class="btn-area"
+  wx:else 
+  type="warn"
+  bindtap="delSubtopicInput">删除主题
+</button>
+
+<text> \n </text>
+
+

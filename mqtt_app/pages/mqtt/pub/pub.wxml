@@ -1,0 +1,16 @@
+
+<view class="section">
+  <view class="flex-wrp">
+    <text class="flex-item bc_red">topic : {{topic}}</text>
+  </view>
+
+  <view class="flex-wrp">
+    <text class="flex-item bc_org">data : \n {{payload}}<br/> 
+    </text>
+  </view>
+</view>
+
+
+
+
+

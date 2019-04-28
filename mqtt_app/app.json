@@ -1,0 +1,43 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/mqtt/mqtt",
+    "pages/mqtt/sub/sub",
+    "pages/mqtt/pub/pub"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "HOME",
+        "iconPath":"pages/images/home.png",
+        "selectedIconPath":"pages/images/home_light.png"
+      },
+      {
+        "pagePath": "pages/mqtt/sub/sub",
+        "text": "Sub",
+        "iconPath": "pages/images/sub.png",
+        "selectedIconPath": "pages/images/sub_light.png"
+      },
+      {
+        "pagePath": "pages/mqtt/pub/pub",
+        "text": "Pub",
+        "iconPath": "pages/images/pub.png",
+        "selectedIconPath": "pages/images/pub_light.png"
+      },
+      {
+        "pagePath": "pages/mqtt/mqtt",
+        "text": "MQTT",
+        "iconPath": "pages/images/control.png",
+        "selectedIconPath": "pages/images/control_light.png"
+      }
+    ]
+  }
+}

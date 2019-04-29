@@ -1,3 +1,36 @@
+<view id="a1" class="section">
+  <gauge 
+  height="350" 
+  r="80" 
+  bgWidth="5"
+  gaugeid="g1"
+  animateMsec="700" 
+  scaleTextStyle="{{scaleTextStyle}}" 
+  indicatorTextStyle='{{indicatorTextStyle}}'
+  indicatorValueStyle='{{indicatorValueStyle}}'
+  indicatorCircleStyle='{{indicatorCircleStyle}}'
+  min="0"
+  max="100"
+  value='{{tempData}}'
+  />
+
+  <gauge 
+  height="350" 
+  r="80" 
+  bgWidth="5"
+  gaugeid="g1"
+  animateMsec="700" 
+  scaleTextStyle="{{scaleTextStyle}}" 
+  indicatorTextStyle='{{indicatorTextStyle1}}'
+  indicatorValueStyle='{{indicatorValueStyle}}'
+  indicatorCircleStyle='{{indicatorCircleStyle}}'
+  min="0"
+  max="100"
+  value='{{humiData}}'
+  />
+
+</view>
+
 
 <view class="section">
   <view class="flex-wrp">

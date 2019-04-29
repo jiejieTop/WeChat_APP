@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "Sub",
-  "usingComponents": {}
+  "usingComponents": {
+    "gauge": "../../dist/index"
+  }
+  
 }

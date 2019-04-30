@@ -20,6 +20,15 @@ Page({
     console.log("---pub onLoad--- ");
   },
 
+  insert: function (e) {
+    wx.showToast({
+      title: '发布成功',       //弹出提示 订阅成功
+      icon: 'none',
+      duration: 1000,
+    })
+    },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

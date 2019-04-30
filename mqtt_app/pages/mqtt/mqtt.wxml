@@ -4,8 +4,8 @@
   <input class="input_domain" bindinput='domainInput' placeholder="服务器地址：{{server_domain}}"/>
   <input class="unified_setting" bindinput='usernameInput' placeholder="用户名：{{connectopt.username}}"/>
   <input  password="{{true}}" class="unified_setting" bindinput='passwordInput' placeholder="密码：{{connectopt.password}}"/>
-  <input class="unified_setting" bindinput='subtopicInput' placeholder="订阅主题：subtopic" />
-  <input class="unified_setting" bindinput='pubtopicInput' placeholder="发布主题：pubtopic"/>
+  <input class="unified_setting" bindinput='subtopicInput' placeholder="订阅主题：mqtt_topic" />
+  <input class="unified_setting" bindinput='pubtopicInput' placeholder="发布主题：mqtt_topic"/>
 </view>
 
 <button class="btn-area"

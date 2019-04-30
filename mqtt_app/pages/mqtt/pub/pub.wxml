@@ -1,4 +1,28 @@
- 
+
+<!--pages/mqtt/mqtt.wxml-->
+
+<view class="main"> 
+  <!-- <input class="input_domain" bindinput='domainInput' placeholder="服务器地址：{{server_domain}}"/>
+  <input class="unified_setting" bindinput='usernameInput' placeholder="用户名：{{connectopt.username}}"/>
+  <input  password="{{true}}" class="unified_setting" bindinput='passwordInput' placeholder="密码：{{connectopt.password}}"/>
+  <input class="unified_setting" bindinput='subtopicInput' placeholder="订阅主题：subtopic" /> -->
+  <input class="unified_setting" bindinput='pubtopicInput' placeholder="主题：mqtt_topic"/><br/>
+  <!-- <input class="unified_setting" bindinput='pubtopicInput' placeholder="消息：pubtopic"/> -->
+  <text> \n </text> 
+  <text class="flex-item bc_org"> This is a test message！ <br/> </text>
+
+</view>
+
+<button class="btn-area"
+  type="primary"
+  bindtap="insert">发布消息
+</button>
+
+<text> \n </text>
+
+
+
+<!--  
 <image 
   style="width: 60px; height: 60px;"
   class="image_frame"
@@ -11,7 +35,7 @@
   class="image_frame"
   src="{{humiUrl}}" 
   mode="aspectFill">
-</image>
+</image> -->
 
 
 

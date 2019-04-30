@@ -18,7 +18,7 @@ Page({
     connectopt: {
       protocolVersion: 4,         //MQTT连接协议版本 3 为3.1 / 4 为3.1.1
       clientId: 'wx',             //用户id，可随意起
-      clean: true,               //不清除
+      clean: false,               //不清除
       username: 'jiejie',         //用户名
       password: '12345',          //密码
       reconnectPeriod: 1000,      //1000毫秒，两次重新连接之间的间隔

@@ -1,0 +1,277 @@
+// pages/mqtt/mqtt.js
+
+import mqtt from '../../utils/mqtt.js';
+
+var app = getApp();
+
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    // 连接的域名：注意格式，不要带端口号
+    server_domain: "www.jiejie01.top",
+    input: [],
+    addinputflag: false,
+    subtopicinputflag: false,
+    //连接配置
+    connectopt: {
+      protocolVersion: 4,         //MQTT连接协议版本 3 为3.1 / 4 为3.1.1
+      clientId: 'wx',             //用户id，可随意起
+      clean: false,               //不清除
+      username: 'jiejie',         //用户名
+      password: '12345',          //密码
+      reconnectPeriod: 1000,      //1000毫秒，两次重新连接之间的间隔
+      connectTimeout: 30 * 1000,  //30 * 1000毫秒，两次重新连接之间的间隔
+      resubscribe: true           //如果连接断开并重新连接，则会再次自动订阅已订阅的主题（默认true）
+    }
+  },
+
+  domainInput: function(e){
+    // console.log(e);
+    this.setData({ server_domain: e.detail.value })   //输入并更新域名数据
+    // console.log(this.data.server_domain);
+  },
+
+  usernameInput: function(e){
+    this.data.connectopt.username = e.detail.value;      //输入并更新数据
+    // console.log(name);
+    console.log(this.data.connectopt.username);
+  },
+
+  passwordInput: function(e){
+    this.data.connectopt.password = e.detail.value;      //输入并更新数据
+    // console.log(name);
+    console.log(this.data.connectopt.password);
+  },
+
+
+  subtopicInput: function (e) {
+    app.globalData.subtopic = e.detail.value
+    // this.setData({ subtopic: e.detail.value })   //输入并更新subtopic数据
+  }, 
+  
+  pubtopicInput: function (e) {
+    app.globalData.pubtopic = e.detail.value
+    // this.setData({ pubtopic: e.detail.value })   //输入并更新pubtopic数据
+  },
+
+  insert: function (e) {
+    var cb = this.data.input;
+    if (this.data.addinputflag == false){
+      this.setData({ addinputflag: true });
+      cb.push(this.data.input.length);
+      this.setData({
+        input: cb
+      });
+    }
+
+    else{
+      wx.showToast({
+        title: '请先进行订阅',       //弹出提示
+        icon: 'none',
+        duration: 2000,
+      })
+    }
+  },
+  
+  delSubtopicInput: function () { //删除主题
+    var cb = this.data.input;
+    // console.log(cb);
+    cb.pop(this.data.input.length);
+    this.setData({
+      input: cb
+    });
+    this.setData({ addinputflag: false });      //清除标记
+    this.setData({ subtopicinputflag: false });
+  },
+
+  subtopicInputx: function(e) {
+    app.globalData.subtopicx = e.detail.value;
+    this.setData({ subtopicinputflag: true });
+    console.log(app.globalData.subtopicx);
+    // this.setData({ subtopic: e.detail.value })   //输入并更新subtopic数据
+  }, 
+
+  subscribeInputx: function () {    //订阅输入的主题
+    if(this.data.addinputflag && this.data.subtopicinputflag){
+      
+      if (app.globalData.client && app.globalData.client.connected && (app.globalData.connectflag == true)) {
+        console.log("订阅主题");
+        app.globalData.client.subscribe(app.globalData.subtopicx, (err, granted) => {  //订阅主题
+          if (!err) {
+            wx.showToast({
+              title: '订阅成功',       //弹出提示 订阅成功
+              icon: 'success',
+              duration: 1000,
+            })
+            this.setData({ addinputflag: false });      //清除标记
+            this.setData({ subtopicinputflag: false });
+          }
+        })
+      }else{
+        wx.showToast({
+          title: '请先连接服务器',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    }
+  }, 
+
+  ButtonTapConnect:function(event) {
+    console.log("连接服务器:");
+    console.log(this.data.server_domain); //得到输入框数据
+
+    var host_name = 'wxs://' + this.data.server_domain + '/mqtt'; //更新域名连接
+
+    //开始连接
+    app.globalData.client = mqtt.connect(host_name, this.data.connectopt);
+
+    wx.showToast({
+      title: '正在连接',
+      icon: 'loading',
+      duration: 50000,
+    })
+
+    app.globalData.client.on('connect', (err) => {
+      if (app.globalData.connectflag == false)
+      {
+        console.log('成功连接服务器')
+        app.globalData.client.subscribe(app.globalData.subtopic, (err, granted) => {  //订阅主题
+          if (!err) {
+            this.setData({ connectflag: true });    //更新页面
+            wx.showToast({
+              title: '连接成功',       //弹出提示 连接并订阅成功
+              icon: 'success',
+              duration: 1000,
+            })
+            app.globalData.connectflag = true;
+            app.globalData.subtopicflag = true;
+            this.setData({ subtopicflag: true });    //更新页面
+          }
+        })
+      } 
+      else {
+        console.log("心跳包重连！")
+      }
+    })
+
+    // //服务器连接异常的回调
+    // app.globalData.client.on("offline", function (err) {
+    //   console.log(" 连接失败")
+    //   wx.showToast({
+    //     title: '连接失败',       //弹出提示
+    //     icon: 'none',
+    //     duration: 2000,
+    //   })
+    //   app.globalData.client.end();   //关闭连接
+    // })
+
+  },
+  
+  ButtonTapClose: function(event) {
+    console.log("断开连接:");
+
+    app.globalData.client.end('close', function(err){}) 
+    console.log('断开服务器');
+    this.setData({ connectflag: false });
+    this.setData({ subtopicflag: false });
+    wx.showToast({
+      title: '断开成功'       //弹出提示 连接并订阅成功
+    })
+    app.globalData.connectflag = false;
+    app.globalData.subtopicflag = false;
+  },
+
+  ButtonTapUnsubscribe:function(event){
+    if (app.globalData.client && app.globalData.client.connected && (app.globalData.connectflag == true)) {
+      if (app.globalData.subtopicflag == true) {
+        app.globalData.client.unsubscribe(app.globalData.subtopic);   //已经连接并且订阅
+        wx.showToast({
+          title: '取消成功',
+          icon: 'success',
+          duration: 2000
+        })
+        app.globalData.subtopicflag = false;
+        this.setData({ subtopicflag: false });
+      }else{    //已经连接但是未订阅
+        app.globalData.client.subscribe(app.globalData.subtopic, (err, granted) => {  //订阅主题
+          if (!err) {
+            wx.showToast({
+              title: '订阅成功',       //弹出提示 订阅成功
+              icon: 'success',
+              duration: 1000,
+            })
+            app.globalData.connectflag = true;
+            app.globalData.subtopicflag = true;
+            this.setData({ subtopicflag: true });    //更新页面
+          }
+        })
+      }
+    }else { //未连接
+      wx.showToast({
+        title: '请先连接服务器',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

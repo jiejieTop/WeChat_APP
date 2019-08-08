@@ -1,0 +1,44 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 20rpx;
+  height: 20px;
+  margin: 10rpx;
+  border-radius: 10%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+
+
+.page-section{
+  margin-bottom: 20rpx;
+}
+.flex-wrp {
+  display: flex;  
+  align-items: center;/**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+}
+.bc_red {
+  /* display: flex; */
+  display: inline-block;
+  align-items: center;
+  background: rgba(255, 0, 0, 0.301);
+  width:80%;
+  height: 50px;
+}
+
+/* .bc_red1 {background: rgba(255, 0, 0, 0.301);width:80%; height: 40px;} */
+.bc_org {display: block;background: rgba(255, 208, 0, 0.822);width:80%; height: 250px;}

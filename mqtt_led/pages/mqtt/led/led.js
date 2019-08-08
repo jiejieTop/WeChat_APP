@@ -1,0 +1,88 @@
+const initData = 'this is first line\nthis is second line'
+import mqtt from '../../../utils/mqtt.js';
+
+var app = getApp();
+
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    led: {
+      mode: 'scaleToFill',
+      text: 'ON'
+    },
+    deng: '../../../pages/images/deng.png',
+    deng_light: '../../../pages/images/deng_light.png',
+    // src_image,
+    tempUrl: "../../../pages/images/temp.png",
+    humiUrl: "../../../pages/images/humi.png"
+  },
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    // this.data.src_image = this.data.deng;
+    console.log("---pub onLoad--- ");
+  },
+
+  insert: function (e) {
+    wx.showToast({
+      title: '发布成功',       //弹出提示 订阅成功
+      icon: 'none',
+      duration: 1000,
+    })
+    },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    console.log("---pub onReady--- ");
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    console.log("---pub onShow--- ");
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    console.log("---pub onHide--- ");
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    console.log("---pub onUnload--- ");
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    console.log("---pub onPullDownRefresh--- ");
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    console.log("---pub onReachBottom--- ");
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    console.log("---pub onShareAppMessage--- ");
+  }
+})

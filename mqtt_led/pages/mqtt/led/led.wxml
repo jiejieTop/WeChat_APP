@@ -1,0 +1,19 @@
+
+<!--pages/mqtt/mqtt.wxml-->
+
+<view class="main">
+  <view class="main">
+    <text class="text">LED {{led.text}}</text>
+  </view>
+
+  <view class="main">
+    <image style="width: 200px; height: 200px;" mode="{{led.mode}}" src="{{src_image}}"></image>
+  </view>
+</view>
+
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+.page-section{
+  margin-bottom: 20rpx;
+}
+.flex-wrp {
+  display: flex;  
+  align-items: center;/**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+}
+.bc_red {
+  /* display: flex; */
+  display: inline-block;
+  align-items: center;
+  background: rgba(255, 0, 0, 0.301);
+  width:80%;
+  height: 50px;
+}
+
+/* .bc_red1 {background: rgba(255, 0, 0, 0.301);width:80%; height: 40px;} */
+.bc_org {display: block;background: rgba(255, 208, 0, 0.822);width:80%; height: 250px;}
+
+
+/* pages/mqtt/mqtt.wxss */
+.server_domain{
+  width: 70%;
+}
+
+.main{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+}
+
+.text{
+font-size: 50rpx; /**字体大小*/
+font-weight: 700; /**字体粗细*/
+color: royalblue; /**字体颜色*/
+}
+
+.input_domain{
+  margin-top: 20px;
+  width: 80%;
+  height: 35px;
+  background-color: whitesmoke
+}
+
+.unified_setting{
+  margin-top: 10px;
+  width: 80%;
+  height: 35px;
+  background-color:  whitesmoke
+}
+
+.btn-area{
+  display: flex;    /*设置显示样式**/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  flex-direction:row; 
+  margin-top: 10px;
+  width: 50%;
+  height: 35px;
+}
+
+.btn-unsubscribe{
+  margin-top: 10px;
+  display: flex;    /*设置显示样式**/
+  align-items: center;    /**子view垂直居中*/
+  vertical-align: center; /**垂直居中*/
+  justify-content: center; /**内容居中*/
+  flex-direction:row; 
+  width: 50%;
+  height: 35px;
+}
+
+

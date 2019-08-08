@@ -1,0 +1,36 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/mqtt/mqtt",
+    "pages/mqtt/led/led"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "HOME",
+        "iconPath":"pages/images/home.png",
+        "selectedIconPath":"pages/images/home_light.png"
+      },
+      {
+        "pagePath": "pages/mqtt/led/led",
+        "text": "LED",
+        "iconPath": "pages/images/led.png",
+        "selectedIconPath": "pages/images/led_light.png"
+      },
+      {
+        "pagePath": "pages/mqtt/mqtt",
+        "text": "MQTT",
+        "iconPath": "pages/images/control.png",
+        "selectedIconPath": "pages/images/control_light.png"
+      }
+    ]
+  }
+}

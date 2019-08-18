@@ -68,7 +68,7 @@
       r="110" 
       bgWidth="6"
       gaugeid="g1"
-      animateMsec="700" 
+      animateMsec="0" 
       scaleTextStyle="{{scaleTextStyle}}" 
       indicatorTextStyle='{{indicatorTextStyle}}'
       indicatorValueStyle='{{indicatorValueStyle}}'

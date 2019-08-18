@@ -20,7 +20,9 @@
   margin-top: 200px;
 }
 
-
+.fontsize{
+  font-weight: 800;
+}
 
 .page-section{
   margin-bottom: 20rpx;
@@ -41,4 +43,4 @@
 }
 
 /* .bc_red1 {background: rgba(255, 0, 0, 0.301);width:80%; height: 40px;} */
-.bc_org {display: block;background: rgba(255, 208, 0, 0.822);width:80%; height: 250px;}
+.bc_org {display: block;background: rgba(255, 208, 0, 0.822);width:80%; height: 200px;}

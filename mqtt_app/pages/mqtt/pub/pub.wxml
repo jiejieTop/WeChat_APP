@@ -1,15 +1,10 @@
 
 <!--pages/mqtt/mqtt.wxml-->
 
-<view class="main"> 
-  <!-- <input class="input_domain" bindinput='domainInput' placeholder="服务器地址：{{server_domain}}"/>
-  <input class="unified_setting" bindinput='usernameInput' placeholder="用户名：{{connectopt.username}}"/>
-  <input  password="{{true}}" class="unified_setting" bindinput='passwordInput' placeholder="密码：{{connectopt.password}}"/>
-  <input class="unified_setting" bindinput='subtopicInput' placeholder="订阅主题：subtopic" /> -->
+<!-- <view class="main"> 
   <input class="unified_setting" bindinput='pubtopicInput' placeholder="主题：mqtt_topic"/><br/>
-  <!-- <input class="unified_setting" bindinput='pubtopicInput' placeholder="消息：pubtopic"/> -->
   <text> \n </text> 
-  <text class="flex-item bc_org"> This is a test message！ <br/> </text>
+  <input class="bc_org" placeholder="This is a test message！" ><br/> </input>
 
 </view>
 
@@ -18,12 +13,11 @@
   bindtap="insert">发布消息
 </button>
 
-<text> \n </text>
+<text> \n </text> -->
 
 
-
-<!--  
-<image 
+ 
+<!-- <image 
   style="width: 60px; height: 60px;"
   class="image_frame"
   src="{{tempUrl}}" 
@@ -37,6 +31,102 @@
   mode="aspectFill">
 </image> -->
 
+<!-- <image 
+  style="width: 60px; height: 60px;"
+  class="image_frame"
+  src="{{humiUrl}}" 
+  mode="aspectFill">
+</image> -->
+
+<view class="led">
+  <image 
+    wx:if="{{r_led_on}}"
+      style="width:120px; height:120px;" 
+      src="{{rLedOnUrl}}" 
+      bindtap="ImageTapRLedOff"
+      mode="cover">
+  </image>
+
+  <image 
+    wx:else 
+      style="width:120px; height:120px;" 
+      src="{{ledOffUrl}}" 
+      bindtap="ImageTapRLedOn"
+      mode="cover">
+  </image>
+  <text> 红色 </text>
+</view>
+
+<view class="led">
+  <image 
+    wx:if="{{g_led_on}}"
+      style="width:120px; height:120px;" 
+      src="{{gLedOnUrl}}" 
+      bindtap="ImageTapGLedOff"
+      mode="cover">
+  </image>
+
+  <image 
+    wx:else 
+      style="width:120px; height:120px;" 
+      src="{{ledOffUrl}}" 
+      bindtap="ImageTapGLedOn"
+      mode="cover">
+  </image>
+  <text> 绿色 </text>
+</view>
+
+<view class="led">
+    <image 
+    wx:if="{{b_led_on}}"
+      style="width:120px; height:120px;" 
+      src="{{bLedOnUrl}}" 
+      bindtap="ImageTapBLedOff"
+      mode="cover">
+  </image>
+
+  <image 
+    wx:else 
+      style="width:120px; height:120px;" 
+      src="{{ledOffUrl}}" 
+      bindtap="ImageTapBLedOn"
+      mode="cover">
+  </image>
+  <text> 蓝色 </text>
+</view>
+
+<view class="led">
+    <image 
+    wx:if="{{beep_on}}"
+      style="width:120px; height:120px;" 
+      src="{{beepOnUrl}}" 
+      bindtap="ImageTapBeepOff"
+      mode="cover">
+  </image>
+
+  <image 
+    wx:else 
+      style="width:120px; height:120px;" 
+      src="{{beepOffUrl}}" 
+      bindtap="ImageTapBeepOn"
+      mode="cover">
+  </image>
+  <text> 蜂鸣器 </text>
+</view>
+
+
+
+<!-- <button class="btn-area"
+  wx:if="{{!connectflag}}" 
+    type="primary"
+    bindtap="ButtonTapConnect">连接服务器
+</button>
+
+<button class="btn-area"
+  wx:else 
+    type="warn"
+    bindtap="ButtonTapClose">服务器已连接
+</button> -->
 
 
 

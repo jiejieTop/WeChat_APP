@@ -14,12 +14,14 @@ Page({
     input: [],
     addinputflag: false,
     subtopicinputflag: false,
+    mqttsubtopic: app.globalData.subtopic,
+    mqttpubtopic: app.globalData.pubtopic,
     //连接配置
     connectopt: {
       protocolVersion: 4,         //MQTT连接协议版本 3 为3.1 / 4 为3.1.1
-      clientId: 'wx',             //用户id，可随意起
+      clientId: 'wx1',             //用户id，可随意起
       clean: false,               //不清除
-      username: 'jiejie',         //用户名
+      username: 'jiejie4',         //用户名
       password: '12345',          //密码
       reconnectPeriod: 1000,      //1000毫秒，两次重新连接之间的间隔
       connectTimeout: 30 * 1000,  //30 * 1000毫秒，两次重新连接之间的间隔

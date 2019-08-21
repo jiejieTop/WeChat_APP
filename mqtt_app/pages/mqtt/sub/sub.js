@@ -18,6 +18,13 @@ Page({
     toView: 'red',
     scrollTop: 100,
 
+    deviceData: {
+      time: 0,
+      name: null,
+      temp: 25,
+      hum:25
+    },
+
     tempData: 25,
     humiData: 50,
     scaleTextStyle: {
@@ -85,11 +92,24 @@ Page({
 
     if (app.globalData.connectflag == true)
     {
+      // app.globalData.client.
+
+
       //服务器下发消息的回调
       app.globalData.client.on('message', (topic, payload) => {
         console.log(" 收到 topic:" + topic + " , payload :" + payload)
+
+        var obj = JSON.parse(payload.toString()); //可用此方法来转换
+        console.log("json obj==" + JSON.stringify(obj))
+        // var name = obj.name;       //得到name属性
+        // var temp = obj.temp;       //得到temp属性
+        // var humi = obj.hum;       //得到temp属性
+        this.setData({
+          deviceData: obj
+        })
+
         app.globalData.subData = payload.toString();
-        console.log(app.globalData.subData);
+        // console.log(app.globalData.subData);
         this.setData({ topic: topic});//更新页面
         this.setData({ payload: app.globalData.subData });//更新页面
       })

@@ -69,4 +69,10 @@
   height: 35px;
 }
 
-
+.led{
+  margin-top: 22px;
+  align-items: center;    /**子view垂直居中*/
+  display:flex; 
+  flex-direction:column;
+  /* margin-left:8% */
+}
